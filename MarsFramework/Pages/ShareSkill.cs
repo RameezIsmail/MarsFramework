@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
+using System.Collections.Generic;
 
 namespace MarsFramework.Pages
 {
@@ -26,7 +27,7 @@ namespace MarsFramework.Pages
         private IWebElement Title { get; set; }
 
         //Enter the Description in textbox
-        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[2]/div/div[2]/div[1]/textarea")]
+        [FindsBy(How = How.Name, Using = "description")]
         private IWebElement Description { get; set; }
 
         //Click on Category Dropdown
@@ -112,6 +113,12 @@ namespace MarsFramework.Pages
         [FindsBy(How = How.XPath, Using = "//*[@id='listing-management-section']/div[2]/div[1]/table/tbody/tr[1]/td[2]")]
         private IWebElement Category { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//*[@id='listing-management-section']/div[2]/div[1]/table/tbody/tr[1]/td[3]")]
+        private IWebElement ManageTitle { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='service-listing-section']/div[2]/div/form/div[4]/div[2]/div/div/div/span")]
+        private IWebElement SavedTag { get; set; }
+
         #endregion
 
         internal void EnterShareSkill()
@@ -128,10 +135,17 @@ namespace MarsFramework.Pages
             //Enter data in Title textbox
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Title"));
 
+            string TitleTextbox = Title.GetAttribute("Value");
+            if (TitleTextbox.Length == 0)
+            {
+                Assert.IsEmpty("Title");
+            }
 
             //Enter data in Description textbox
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Description"));
 
+            Assert.That(Description.Text, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Description")));
+            
             //Select Category
             CategoryDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Category"));
             CategoryDropDown.Click();
@@ -143,6 +157,8 @@ namespace MarsFramework.Pages
             //Enter data in Tags textbox
             Tags.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Tags"));
             Tags.SendKeys(Keys.Enter);
+
+            //Assert.That(SavedTag.Text, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(2, "Tags")));
 
             //Click on Hourly basis service or One-off service
             if (GlobalDefinitions.ExcelLib.ReadData(2, "Service Type")== "Hourly basis service")
@@ -173,11 +189,22 @@ namespace MarsFramework.Pages
             string newStartDate = DateTime.Parse(sdate).ToString(dateformat);
             StartDateDropDown.SendKeys(newStartDate);
 
+            string StartDate = StartDateDropDown.GetAttribute("Value");
+            if (StartDate.Length == 0)
+            {
+                Assert.IsEmpty("Startdate");
+            }
+
             //Convert excel dateformat to C# - Enter data in Enddate
             string edate = GlobalDefinitions.ExcelLib.ReadData(2, "Enddate");
             string newEndDate = DateTime.Parse(edate).ToString(dateformat);
             EndDateDropDown.SendKeys(newEndDate);
 
+            string EndDate = EndDateDropDown.GetAttribute("Value");
+            if (EndDate.Length == 0)
+            {
+                Assert.IsEmpty("Enddate");
+            }
             //Wait
             GlobalDefinitions.wait(60);
 
@@ -190,10 +217,22 @@ namespace MarsFramework.Pages
             string newStartTime = DateTime.Parse(stime).ToString(timeformat);
             StartTimeDropDown.SendKeys(newStartTime);
 
+            string Start = StartTimeDropDown.GetAttribute("Value");
+            if (Start.Length == 0)
+            {
+                Assert.IsEmpty("Starttime");
+            }
+
             //Convert excel timeformat to C# - enter data in Endtime
             string etime = GlobalDefinitions.ExcelLib.ReadData(2, "Endtime");
             string newEndTime = DateTime.Parse(etime).ToString(timeformat);
             EndTimeDropDown.SendKeys(newEndTime);
+
+            string End = EndTimeDropDown.GetAttribute("Value");
+            if (End.Length == 0)
+            {
+                Assert.IsEmpty("Endtime");
+            }
 
             //Click on Skill-exchange or Credit
             if (GlobalDefinitions.ExcelLib.ReadData(2, "SkillTrade") == "Skill-exchange")
@@ -208,7 +247,6 @@ namespace MarsFramework.Pages
                 CreditOption.Click();
                 CreditAmount.SendKeys(GlobalDefinitions.ExcelLib.ReadData(2, "Credit"));
             }
-
 
             //Click on Active or Hidden
             ActiveOption.Click();
@@ -233,7 +271,7 @@ namespace MarsFramework.Pages
 
             Save.Click();
 
-            Assert.That(Category.Text, Is.EqualTo("Video & Animation"));
+            Assert.That(ManageTitle.Text, Is.EqualTo("Animation"));
         }
 
         internal void EditShareSkill()
@@ -249,9 +287,15 @@ namespace MarsFramework.Pages
 
             //Enter data in Title textbox
             Title.SendKeys(GlobalDefinitions.ExcelLib.ReadData(3, "Title"));
+            string TitleTextbox = Title.GetAttribute("Value");
+            if (TitleTextbox.Length == 0)
+            {
+                Assert.IsEmpty("Title");
+            }
 
             //Enter data in Description textbox
             Description.SendKeys(GlobalDefinitions.ExcelLib.ReadData(3, "Description"));
+            Assert.That(Description.Text, Is.EqualTo(GlobalDefinitions.ExcelLib.ReadData(3, "Description")));
 
             CategoryDropDown.SendKeys(GlobalDefinitions.ExcelLib.ReadData(3, "Category"));
             CategoryDropDown.Click();
@@ -291,10 +335,22 @@ namespace MarsFramework.Pages
             string newStartDate = DateTime.Parse(sdate).ToString(dateformat);
             StartDateDropDown.SendKeys(newStartDate);
 
+            string StartDate = StartDateDropDown.GetAttribute("Value");
+            if (StartDate.Length == 0)
+            {
+                Assert.IsEmpty("Startdate");
+            }
+
             //Convert excel dateformat to C# - Enter data in Enddate
             string edate = GlobalDefinitions.ExcelLib.ReadData(3, "Enddate");
             string newEndDate = DateTime.Parse(edate).ToString(dateformat);
             EndDateDropDown.SendKeys(newEndDate);
+
+            string EndDate = EndDateDropDown.GetAttribute("Value");
+            if (EndDate.Length == 0)
+            {
+                Assert.IsEmpty("Enddate");
+            }
 
             //Wait
             GlobalDefinitions.wait(60);
@@ -308,10 +364,22 @@ namespace MarsFramework.Pages
             string newStartTime = DateTime.Parse(stime).ToString(timeformat);
             StartTimeDropDown.SendKeys(newStartTime);
 
+            string Start = StartTimeDropDown.GetAttribute("Value");
+            if (Start.Length == 0)
+            {
+                Assert.IsEmpty("Starttime");
+            }
+
             //Convert excel timeformat to C# - enter data in Endtime
             string etime = GlobalDefinitions.ExcelLib.ReadData(3, "Endtime");
             string newEndTime = DateTime.Parse(etime).ToString(timeformat);
             EndTimeDropDown.SendKeys(newEndTime);
+
+            string End = EndTimeDropDown.GetAttribute("Value");
+            if (End.Length == 0)
+            {
+                Assert.IsEmpty("Endtime");
+            }
 
             //Click on Skill-exchange or Credit
             if (GlobalDefinitions.ExcelLib.ReadData(3, "SkillTrade") == "Skill-exchange")
@@ -350,7 +418,7 @@ namespace MarsFramework.Pages
 
             Save.Click();
 
-            Assert.That(Category.Text, Is.EqualTo("Music & Audio"));
+            Assert.That(ManageTitle.Text, Is.EqualTo("Voice Actor"));
         }
     }
     

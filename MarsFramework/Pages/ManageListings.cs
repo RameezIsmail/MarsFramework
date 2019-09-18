@@ -60,16 +60,15 @@ namespace MarsFramework.Pages
 
             manageListingsButton.Click();
 
+            view.Click();
 
-                view.Click();
+            Base.Back();
 
-                Base.Back();
+            ActiveSlider.Click();
 
-                ActiveSlider.Click();
+            delete.Click();
 
-                delete.Click();
-
-                clickActionsButton.Click();
+            clickActionsButton.Click();
             
 
         }

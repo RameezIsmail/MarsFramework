@@ -27,11 +27,6 @@ namespace MarsFramework.Global
         private static string i;
         #endregion
 
-        public static void TitlePath()
-        {
-            _ = driver.FindElement(By.XPath("//*[@id='listing-management-section']/div[2]/div[1]/table/tbody/tr[" + i + "]/td[3]")).Text;
-        }
-
         public static void Back()
         {
             driver.Navigate().Back();
