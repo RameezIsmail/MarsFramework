@@ -10,7 +10,7 @@ using static MarsFramework.Global.GlobalDefinitions;
 
 namespace MarsFramework.Global
 {
-    class Base
+    public class Base
     {
         
         #region To access Path from resource file

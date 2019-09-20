@@ -266,6 +266,10 @@ namespace MarsFramework.Pages
             GlobalDefinitions.wait(20);
             string path = GlobalDefinitions.ExcelLib.ReadData(2, "WorkSample");
             AutoItX.WinActivate("File Upload");
+
+            //Wait
+            GlobalDefinitions.wait(60);
+
             AutoItX.Send(path);
             AutoItX.Send("{ENTER}");
 
@@ -414,6 +418,10 @@ namespace MarsFramework.Pages
             GlobalDefinitions.wait(20);
             string path = GlobalDefinitions.ExcelLib.ReadData(3, "WorkSample");
             AutoItX.WinActivate("File Upload");
+
+            //Wait
+            GlobalDefinitions.wait(60);
+
             AutoItX.Send(path);
             AutoItX.Send("{ENTER}");
 
