@@ -34,13 +34,19 @@ namespace MarsFramework.Pages
 
         internal void LoginSteps()
         {
+            //Click on SignIn button
             SignIntab.Click();
 
+            //Populate the Excel Sheet of SignIn
             GlobalDefinitions.ExcelLib.PopulateInCollection(@"C:\Users\Rammy\Desktop\marsframework\MarsFramework\ExcelData\TestDataShareSkill.xlsx", "SignIn");
 
+            //Enter email
             Email.SendKeys(Global.GlobalDefinitions.ExcelLib.ReadData(2, "Username"));
+
+            //Enter password
             Password.SendKeys(Global.GlobalDefinitions.ExcelLib.ReadData(2, "Password"));
 
+            //Click on login
             LoginBtn.Click();
         }
     }

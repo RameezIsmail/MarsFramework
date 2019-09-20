@@ -38,7 +38,7 @@ namespace MarsFramework
             {
                 Base.test = Base.extent.StartTest("View and Delete");
                 ManageListings ManageListingsobj = new ManageListings();
-                ManageListingsobj.Listings();
+                ManageListingsobj.ViewandDeleteListings();
             }
 
         }
