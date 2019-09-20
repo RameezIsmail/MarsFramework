@@ -34,7 +34,7 @@ namespace MarsFramework
             }
 
             [Test, Order (3)]
-            public void ManageListing()
+            public void ViewDeleteListing()
             {
                 Base.test = Base.extent.StartTest("View and Delete");
                 ManageListings ManageListingsobj = new ManageListings();

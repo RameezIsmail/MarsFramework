@@ -36,6 +36,7 @@ namespace MarsFramework.Global
         [SetUp]
         public void Inititalize()
         {
+            GlobalDefinitions.ExcelLib.PopulateInCollection(@"C:\Users\Rammy\Desktop\marsframework\MarsFramework\ExcelData\TestDataShareSkill.xlsx", "SignIn");
 
             // advisasble to read this documentation before proceeding http://extentreports.relevantcodes.com/net/
             switch (Browser)
@@ -43,12 +44,12 @@ namespace MarsFramework.Global
 
                 case 1:
                     GlobalDefinitions.driver = new FirefoxDriver();
-                    driver.Navigate().GoToUrl("http://www.skillswap.pro/");
+                    driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
                     break;
                 case 2:
                     GlobalDefinitions.driver = new ChromeDriver();
                     GlobalDefinitions.driver.Manage().Window.Maximize();
-                    driver.Navigate().GoToUrl("http://www.skillswap.pro/");
+                    driver.Navigate().GoToUrl(GlobalDefinitions.ExcelLib.ReadData(2, "Url"));
                     break;
 
             }

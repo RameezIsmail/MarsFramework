@@ -34,6 +34,9 @@ namespace MarsFramework.Pages
 
         internal void LoginSteps()
         {
+            //extent reports
+            Base.test = Base.extent.StartTest("SignIn Test");
+
             //Click on SignIn button
             SignIntab.Click();
 
